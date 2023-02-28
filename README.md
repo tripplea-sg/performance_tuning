@@ -71,7 +71,7 @@ Load airport-db to database and note the time
 ```
 mysql -uroot -h::1 -e "set global local_infile=on"
 
-time mysqlsh root@localhost:3306 -- util loadDump 'airport-db' 
+time mysqlsh root@localhost:3306 -- util loadDump 'airport-db'  --resetProgress=true
 ```
 Drop airport-db and restart database
 ```
