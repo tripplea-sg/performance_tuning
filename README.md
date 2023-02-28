@@ -26,6 +26,13 @@ mysql -uroot -h::1 -e "set global local_infile=on"
 
 time mysqlsh root@localhost:3306 -- util loadDump 'airport-db' 
 ```
+Timing for this loading is:
+```
+real	73m12.543s
+user	0m4.826s
+sys	0m0.874s
+
+```
 Drop airport-db and restart database
 ```
 mysql -uroot -h::1 -e "drop database airportdb"
@@ -75,6 +82,18 @@ time mysqlsh root@localhost:3306 -- util loadDump 'airport-db'  --resetProgress=
 ```
 Drop airport-db and restart database
 ```
-mysql -uroot -h::1 -e "drop database airport-db"
+mysql -uroot -h::1 -e "drop database airportdb"
 mysql -uroot -h::1 -e "restart"
+```
+Disable redo log and perform data loading
+```
+mysql -uroot -h::1 -e "alter instance disable innodb redolog"
+
+mysql -uroot -h::1 -e "set global local_infile=on"
+
+time mysqlsh root@localhost:3306 -- util loadDump 'airport-db'  --resetProgress=true
+```
+enable the redo log back
+```
+mysql -uroot -h::1 -e "alter instance enable innodb redolog"
 ```
