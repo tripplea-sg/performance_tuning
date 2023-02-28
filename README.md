@@ -47,6 +47,7 @@ set persist innodb_log_compressed_pages=off;
 EOF
 
 echo "innodb_buffer_pool_load_at_startup=off" >> /home/opc/mysql-sandboxes/3306/my.cnf
+echo "innodb_flush_method=O_DIRECT_NO_FSYNC" >> /home/opc/mysql-sandboxes/3306/my.cnf
 
 mysql -uroot -h::1 -e "restart"
 
