@@ -3,7 +3,7 @@ Set I/O scheduler
 ```
 cat /sys/block/sda/queue/scheduler
 sudo su
-cat none > /sys/block/sda/queue/scheduler
+echo 'none' > /sys/block/sda/queue/scheduler
 cat /sys/block/sda/queue/scheduler
 exit
 ```
