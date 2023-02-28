@@ -16,6 +16,7 @@ set persist innodb_io_capacity=3000;
 set persist innodb_io_capacity_max=6000;
 set persist innodb_checksum_algorithm='strict_crc32';
 set persist binlog_row_image=minimal;
+set persist innodb_log_compressed_pages=off;
 EOF
 
 echo "innodb_buffer_pool_load_at_startup=off" >> /home/opc/mysql-sandboxes/3306/my.cnf
@@ -34,6 +35,7 @@ show variables like 'innodb_io_capacity_max';
 show variables like 'innodb_checksum_algorithm';
 show variables like 'binlog_row_image';
 show variables like 'innodb_flush_method';
+show variables like 'innodb_log_compressed_pages';
 EOF
 ```
 In production, do not change innodb_buffer_pool_dump_at_shutdown and innodb_buffer_pool_load_at_startup
