@@ -28,7 +28,7 @@ time mysqlsh root@localhost:3306 -- util loadDump 'airport-db'
 ```
 Drop airport-db and restart database
 ```
-mysql -uroot -h::1 -e "drop database airport-db"
+mysql -uroot -h::1 -e "drop database airportdb"
 mysql -uroot -h::1 -e "restart"
 ```
 Set database parameters
