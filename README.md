@@ -36,4 +36,4 @@ show variables like 'binlog_row_image';
 show variables like 'innodb_flush_method';
 EOF
 ```
-In production, do not set innodb_buffer_pool_dump_at_shutdown and innodb_buffer_pool_load_at_startup
+In production, do not change innodb_buffer_pool_dump_at_shutdown and innodb_buffer_pool_load_at_startup
