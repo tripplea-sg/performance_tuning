@@ -5,7 +5,26 @@ sudo systemctl stop mysqld
 sudo systemctl disable mysqld
 
 mysqlsh -e "dba.deploySandboxInstance(3306)"
+```
+Download airport-db
+```
+wget https://downloads.mysql.com/docs/airport-db.tar.gz
 
+tar -zxvf airport-db.tar.gz
+```
+Load airport-db to database and note the time
+```
+mysql -uroot -h::1 -e "set global local_infile=on"
+
+time mysqlsh root@localhost:3306 -- util loadDump 'airport-db' 
+```
+Drop airport-db and restart database
+```
+mysql -uroot -h::1 -e "drop database airport-db"
+mysql -uroot -h::1 -e "restart"
+```
+Set database parameters
+```
 mysql -uroot -h::1 << EOF
 set persist innodb_buffer_pool_dump_at_shutdown=off;
 set persist_only innodb_read_io_threads=16;
@@ -38,4 +57,15 @@ show variables like 'innodb_flush_method';
 show variables like 'innodb_log_compressed_pages';
 EOF
 ```
-In production, do not change innodb_buffer_pool_dump_at_shutdown and innodb_buffer_pool_load_at_startup
+In production, do not change innodb_buffer_pool_dump_at_shutdown and innodb_buffer_pool_load_at_startup </br>
+Load airport-db to database and note the time
+```
+mysql -uroot -h::1 -e "set global local_infile=on"
+
+time mysqlsh root@localhost:3306 -- util loadDump 'airport-db' 
+```
+Drop airport-db and restart database
+```
+mysql -uroot -h::1 -e "drop database airport-db"
+mysql -uroot -h::1 -e "restart"
+```
