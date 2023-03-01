@@ -80,6 +80,12 @@ mysql -uroot -h::1 -e "set global local_infile=on"
 
 time mysqlsh root@localhost:3306 -- util loadDump 'airport-db'  --resetProgress=true
 ```
+Result is something like this
+```
+real	76m3.664s
+user	0m4.645s
+sys	0m0.866s
+```
 Drop airport-db and restart database
 ```
 mysql -uroot -h::1 -e "drop database airportdb"
